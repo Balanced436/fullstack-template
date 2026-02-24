@@ -11,6 +11,7 @@ POSTGRES_PASSWORD_TEST="${POSTGRES_PASSWORD}"
 POSTGRES_DB_TEST="${POSTGRES_DB}_test"
 DATABASE_URL_TEST="postgresql://${POSTGRES_USER_TEST}:${POSTGRES_PASSWORD_TEST}@${POSTGRES_HOST}:5432/${POSTGRES_DB_TEST}?schema=public"
 echo "DATABASE_URL=$DATABASE_URL_TEST" >> .env.test
+npx prisma migrate dev --name init
 
 if [ "$NODE_ENV" = "development" ]; then
     echo "Lancement de prisma en mode dev"

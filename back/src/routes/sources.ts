@@ -1,10 +1,13 @@
-import { PrismaClient } from "@prisma/client";
 import { Router, Request, Response } from "express";
+import { prisma } from "../lib/prisma";
 
 export const sourceRouter = Router();
-const prisma = new PrismaClient();
 
-sourceRouter.get("/exemple/:id?", async (req: Request, res: Response): Promise<any> => {},
+sourceRouter.get("/source/:id?", async (req: Request, res: Response): Promise<any> => {
+    const { id } = req.params;
+
+    return res.status(200).json(await prisma.source.findMany())
+    },
 );
 
 export default sourceRouter;

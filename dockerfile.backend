@@ -1,10 +1,9 @@
-FROM node:19
+FROM node:24
 WORKDIR /app
-COPY front/package*.json ./
+COPY back/package*.json ./
 RUN npm install
 COPY back/ .
-RUN npx prisma generate
-RUN npx dotenv -e .env.test prisma generate
+
 
 RUN npm run build
 COPY back/entrypoint.sh /app/entrypoint.sh
