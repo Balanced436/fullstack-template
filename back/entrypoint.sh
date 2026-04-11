@@ -1,8 +1,8 @@
 #!/bin/sh
 
-POSTGRES_USER=$(cat /run/secrets/postgres_user)
-POSTGRES_PASSWORD=$(cat /run/secrets/postgres_password)
-POSTGRES_DB=$(cat /run/secrets/postgres_db)
+POSTGRES_USER=$(cat "${POSTGRES_USER_FILE}")
+POSTGRES_PASSWORD=$(cat "${POSTGRES_PASSWORD_FILE}")
+POSTGRES_DB=$(cat "${POSTGRES_DB_FILE}")
 DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DB}?schema=public"
 echo "DATABASE_URL=$DATABASE_URL" >> .env
 
